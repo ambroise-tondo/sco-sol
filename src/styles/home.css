@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+/* ===== HOME (Services Parallax) ===== */
+
+.services-parallax{
+  @apply relative text-white;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* effet parallax léger */
+}
+.services-parallax::before{
+  content:""; @apply absolute inset-0 bg-black/40; /* voile global doux */
+}
+.services-parallax > .container{ @apply relative; }
+
+/* grille 3 colonnes comme la maquette */
+.rooms-grid{ @apply grid gap-6 md:grid-cols-3; }
+
+/* carte avec image + panneau translucide bas */
+.room-card{ @apply relative rounded-xl overflow-hidden shadow-sm; }
+.room-media{ @apply block w-full h-56 md:h-64 object-cover; }
+
+/* panneau texte translucide au bas de l'image */
+.room-panel{
+  @apply absolute inset-x-4 bottom-4 rounded-xl overflow-hidden;
+  /* on utilise un fond semi-opaque qui fonce au hover */
+}
+.room-card .room-panel::before{
+  content:""; position:absolute; inset:0; border-radius: inherit; z-index:0;
+  background: rgba(0,0,0,.45);
+  transition: background .25s ease;
+}
+.room-card:hover .room-panel::before{ background: rgba(0,0,0,.65); }
+
+.room-meta{ @apply relative z-10 flex items-center gap-4 px-5 pt-4 text-white/80 text-xs uppercase tracking-wide; }
+.room-title{ @apply relative z-10 px-5 mt-1 font-semibold text-white; }
+.room-text{ @apply relative z-10 px-5 mt-1 text-sm text-white/80; }
+.room-cta{
+  @apply relative z-10 mx-5 my-4 inline-block px-4 py-2 text-sm font-semibold rounded text-white;
+  background-color: var(--color-brand);
+}
+.room-cta:hover{ background-color: var(--color-brand-600); }
+
+/* ===== CATEGORIES SHOWCASE ===== */
+.categories-showcase{ background: #181818; border-top: 1px solid rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.06); }
+.showcase-head{ @apply grid md:grid-cols-2 gap-8 items-end; }
+.kicker{ @apply text-white/60 text-xs uppercase tracking-widest; }
+.title{ @apply text-3xl md:text-5xl font-extrabold; }
+.lead{ @apply text-white/80; }
+
+.staggered-cards{ @apply flex gap-6 overflow-x-auto; padding-bottom: .5rem; align-items: flex-start; min-height: 520px; }
+.staggered-card{ width: 220px; }
+.staggered-card .card-figure{ @apply relative rounded-lg overflow-hidden shadow-sm; }
+.staggered-card .card-media{ @apply block w-full object-cover; height: 360px; }
+.staggered-card.is-tall .card-media{ height: 440px; }
+.staggered-card.is-mid .card-media{ height: 380px; }
+.staggered-card.is-short .card-media{ height: 320px; }
+
+.staggered-card .card-meta{ @apply mt-3; }
+.staggered-card .badge{ @apply text-white/60 text-xs; }
+.staggered-card .name{ @apply text-white font-semibold; }
+
+/* Décalage en quinconce (haut/bas alternés) */
+.staggered-card{ align-self: flex-start; }
+.staggered-card:nth-child(2n){ align-self: flex-end; }
+@media (min-width: 768px){
+  .staggered-cards{ min-height: 560px; }
+}

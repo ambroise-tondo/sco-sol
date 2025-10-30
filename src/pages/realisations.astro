@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/realisations.css";
+---
+<BaseLayout title="Réalisations | PVC, lino, moquette – exemples à Bordeaux" description="Exemples de chantiers: pose de PVC, linoléum, moquette, salles de bain et rénovations en Nouvelle‑Aquitaine.">
+
+  <!-- HERO sombre -->
+  <section class="page-hero" data-parallax-root data-speed="0.25">
+    <img src="/images/hero-realisations.jpg" alt="Exemples de chantiers SCO Sol"
+         class="parallax-media w-full h-full object-cover"
+         onerror="this.onerror=null;this.src='/images/placeholder.jpg';" />
+    <div class="page-hero__content">
+      <div>
+        <p class="uppercase tracking-widest text-white/70 text-xs">Nos chantiers</p>
+        <h1 class="text-3xl md:text-5xl font-extrabold">Réalisations</h1>
+        <p class="mt-2 text-white/80 max-w-2xl mx-auto">Quelques exemples de poses : PVC, linoléum, moquette, pièces humides et rénovations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIP HORIZONTAL (une seule ligne) -->
+  <section class="container py-12 md:py-16">
+    <h2 class="section-title text-center">Nos <span class="text-brand">projets</span></h2>
+    <p class="section-sub text-center">Un aperçu de nos poses récentes</p>
+
+    <div class="works-strip mt-8">
+      {[
+        ["PVC imitation bois – séjour", "/images/work-1.png", "PVC · Résidentiel"],
+        ["Lino naturel – chambre", "/images/work-2.png", "Linoléum · Habitat"],
+        ["Rideau industriel – atelier", "/images/work-3.png", "Sol pro"],
+        ["Entrée – rénovation", "/images/work-4.png", "Rénovation"],
+        ["Porte d’entrée – finitions", "/images/work-5.png", "Détails & finitions"],
+        ["Hall vitré – dalles PVC", "/images/work-6.png", "Bureau / commerce"],
+      ].map(([title, src, tag]) => (
+        <article class="work-panel reveal w-[78vw] sm:w-[420px] md:w-[460px] h-[520px] md:h-[560px]" data-reveal="up">
+          <img src={src} alt={title} class="panel-media"
+               onerror="this.onerror=null;this.src='/images/placeholder.jpg';" />
+          <div class="panel-title">{title}</div>
+          <div class="panel-tag">{tag}</div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Animations scroll (réutilisées) -->
+  <script type="module" src="/src/scripts/animate.js"></script>
+  <script is:inline>
+    const roots = document.querySelectorAll('[data-parallax-root]');
+    const onScroll = () => {
+      const y = window.scrollY || 0;
+      roots.forEach(root => {
+        const speed = Number(root.dataset.speed) || 0.2;
+        const media = root.querySelector('.parallax-media');
+        if (!media) return;
+        const offset = Math.round(y * speed);
+        media.style.transform = `translate3d(0, ${offset}px, 0) scale(1.08)`;
+      });
+    };
+    let rid; const tick = () => { rid = null; onScroll(); };
+    const schedule = () => { if (!rid) rid = requestAnimationFrame(tick); };
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    document.addEventListener('DOMContentLoaded', schedule);
+    schedule();
+  </script>
+</BaseLayout>

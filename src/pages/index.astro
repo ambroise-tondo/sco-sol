@@ -1,0 +1,272 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroCarousel from "../components/HeroCarousel.astro";
+import "../styles/home.css";
+const title = "SCO Sol | Poseur de sol à Bordeaux (PVC, linoléum, moquette)";
+const description = "Artisan spécialiste en revêtement souple: PVC, lino/linoléum, moquette, salles de bain. Rénovation de sol et préparation des supports. Devis pose de sol sous 24h à Bordeaux et en Nouvelle‑Aquitaine.";
+---
+<BaseLayout {title} {description}>
+
+  <!-- HERO CARROUSEL -->
+  <HeroCarousel />
+
+  <!-- CATEGORIES (showcase décalé) -->
+  <section class="categories-showcase">
+    <div class="container py-12 md:py-16">
+      <div class="showcase-head">
+        <div>
+          <p class="kicker">Catégories de services</p>
+          <h2 class="title">Votre espace, notre savoir‑faire</h2>
+        </div>
+        <p class="lead">
+          Ce n’est pas juste un sol, c’est la fondation de votre bien‑être. La matière, la couleur, la texture — tout concourt à créer l’harmonie dans laquelle vous vivez.
+        </p>
+      </div>
+
+      <ul class="staggered-cards mt-10">
+        {[
+          ["PVC", "/images/cat-pvc.jpg", "#pvc", "is-tall"],
+          ["Linoléum", "/images/cat-lino.jpg", "#lino", "is-mid"],
+          ["Moquette", "/images/cat-moquette.jpg", "#moquette", "is-short"],
+          ["Système douche", "/images/cat-sdb.jpg", "#sdb", "is-tall"],
+          ["Préparation des supports", "/images/cat-prepa.jpg", "#prepa", "is-mid"],
+          ["Rénovation", "/images/cat-renov.jpg", "#renov", "is-short"],
+        ].map(([label,src,hash,hcl]) => (
+          <li class={`staggered-card reveal ${hcl}`} data-reveal="up">
+            <a href={"/services"+hash} class="block">
+              <figure class="card-figure">
+                <img src={src} alt={label} class="card-media" onerror="this.onerror=null;this.src='/images/placeholder.jpg';" />
+              </figure>
+              <div class="card-meta">
+                <span class="badge">Service</span>
+                <h3 class="name">{label}</h3>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- BANDE AVANTAGES (icônes) -->
+  <!-- BANDE AVANTAGES (icônes inline, plus de 404) -->
+<section class="border-y border-white/10">
+  <div class="container py-10 grid sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
+
+    <!-- Réponse < 24h -->
+    <div class="reveal" data-reveal="up">
+      <div class="mx-auto w-14 h-14 rounded-full bg-brand-20 grid place-items-center mb-2 text-brand">
+        <!-- Clock -->
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-7 h-7"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="9" stroke-width="1.5"/>
+          <path d="M12 7v5l3 2" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <p class="text-sm text-white/90">Retour &lt; 24h</p>
+    </div>
+
+    <!-- Garantie décennale -->
+    <div class="reveal" data-reveal="up">
+      <div class="mx-auto w-14 h-14 rounded-full bg-brand-20 grid place-items-center mb-2 text-brand">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-7 h-7"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3z" stroke-width="1.5"/>
+          <path d="M9 12l2 2 4-4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p class="text-sm text-white/90">Garantie décennale</p>
+    </div>
+
+    <!-- Zones humides -->
+    <div class="reveal" data-reveal="up">
+      <div class="mx-auto w-14 h-14 rounded-full bg-brand-20 grid place-items-center mb-2 text-brand">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-7 h-7"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 2s7 7 7 12a7 7 0 1 1-14 0c0-5 7-12 7-12z" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <p class="text-sm text-white/90">Zones humides</p>
+    </div>
+
+    <!-- Matériaux pro -->
+    <div class="reveal" data-reveal="up">
+      <div class="mx-auto w-14 h-14 rounded-full bg-brand-20 grid place-items-center mb-2 text-brand">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-7 h-7"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="9" stroke-width="1.5"/>
+          <path d="M8 12l2.5 2.5L16 9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p class="text-sm text-white/90">Matériaux pro</p>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- TUILES PROMO (style “boutique”) -->
+  <section class="bg-wood">
+    <div class="container py-12 md:py-16 grid md:grid-cols-3 gap-6">
+      <article class="relative rounded-2xl overflow-hidden reveal" data-reveal="right">
+        <img src="/images/tile-1.jpg" alt="Salle de bain antidérapante" class="w-full h-full object-cover aspect-[4/3]" />
+        <div class="overlay-dark"></div>
+        <div class="absolute inset-0 p-6 grid content-end text-white">
+          <h3 class="text-2xl font-bold">Système douche</h3>
+          <p class="opacity-90">Remontées en plinthes, soudures à chaud</p>
+          <a href="/services#sdb" class="btn-ghost mt-3 w-max">Voir le service</a>
+        </div>
+      </article>
+
+      <article class="relative rounded-2xl overflow-hidden reveal" data-reveal="up">
+        <img src="/images/tile-2.jpg" alt="Préparation des supports" class="w-full h-full object-cover aspect-[4/3]" />
+        <div class="overlay-dark"></div>
+        <div class="absolute inset-0 p-6 grid content-end text-white">
+          <h3 class="text-2xl font-bold">Préparation des supports</h3>
+          <p class="opacity-90">Ragréage, planéité, adhérence</p>
+          <a href="/services#prepa" class="btn-ghost mt-3 w-max">En savoir plus</a>
+        </div>
+      </article>
+
+      <article class="relative rounded-2xl overflow-hidden reveal" data-reveal="left">
+        <img src="/images/tile-3.jpg" alt="PVC & Linoléum" class="w-full h-full object-cover aspect-[4/3]" />
+        <div class="overlay-dark"></div>
+        <div class="absolute inset-0 p-6 grid content-end text-white">
+          <h3 class="text-2xl font-bold">PVC & Linoléum</h3>
+          <p class="opacity-90">Pose en dalles ou en lés</p>
+          <a href="/services#pvc" class="btn-ghost mt-3 w-max">Découvrir</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SERVICES (parallax bg + panneaux translucides) -->
+  <section class="services-parallax" id="services" style="background-image:url('/images/home-services-bg.jpg')">
+    <div class="container py-12 md:py-16">
+      <h2 class="section-title text-center reveal" data-reveal="up">Nos services</h2>
+      <p class="section-sub text-center reveal" data-reveal="up">PVC, linoléum, moquette, salles de bain, préparation, rénovation</p>
+
+      <div class="rooms-grid mt-8">
+        {[
+           ["Pose de PVC","En dalles ou en lés – habitat & pro.","/images/svc-pvc.jpg","#pvc"],
+      ["Linoléum","Revêtement naturel & durable.","/images/svc-lino.jpg","#lino"],
+      ["Moquette","Confort acoustique (dalles ou lés).","/images/svc-moquette.jpg","#moquette"],
+      ["Système douche","Étanchéité, remontées en plinthes.","/images/svc-sdb.jpg","#sdb"],
+      ["Préparation des supports","Primaire, ragréage, planéité.","/images/svc-prepa.jpg","#prepa"],
+      ["Rénovation / Reprises","Réparations locales ou refonte.","/images/svc-renov.jpg","#renov"],
+        ].map(([t,sub,src,hash])=>(
+          <article class="room-card reveal" data-reveal="up">
+            <img src={src} alt={t} class="room-media" onerror="this.onerror=null;this.src='/images/placeholder.jpg';" />
+            <div class="room-panel">
+              <div class="room-meta">
+                <span></span>
+                <span></span>
+              </div>
+              <h3 class="room-title">{t}</h3>
+              <p class="room-text">{sub}</p>
+              <a href="/contact" class="room-cta">Demander un devis</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- STATS / COMPTEURS -->
+  <section class="bg-wood">
+    <div class="container py-12 md:py-16 grid md:grid-cols-3 gap-6 text-center">
+      <div class="reveal" data-reveal="up">
+        <p class="stat" data-count-to="150">0</p>
+        <p class="stat-sub">+ chantiers réalisés</p>
+      </div>
+      <div class="reveal" data-reveal="up">
+        <p class="stat" data-count-to="12">0</p>
+        <p class="stat-sub">ans d’expérience</p>
+      </div>
+      <div class="reveal" data-reveal="up">
+        <p class="stat" data-count-to="24">0</p>
+        <p class="stat-sub">h pour un retour</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SEO -->
+  <section class="container py-12 md:py-16">
+    <h2 class="section-title text-center">FAQ – sols souples</h2>
+    <div class="max-w-3xl mx-auto mt-6 space-y-5">
+      <details>
+        <summary class="font-semibold">Quel est le meilleur sol souple pour mon usage ?</summary>
+        <p class="text-white/80 mt-2">Le choix dépend des pièces et du trafic. Le <strong>PVC</strong> est polyvalent et résistant à l’eau (idéal cuisine et <strong>salle de bain</strong>), le <strong>linoléum (lino)</strong> est naturel et durable, la <strong>moquette</strong> apporte confort acoustique dans les chambres et bureaux. Nous conseillons la solution la plus adaptée après un rapide échange.</p>
+      </details>
+      <details>
+        <summary class="font-semibold">Combien coûte un sol souple ?</summary>
+        <p class="text-white/80 mt-2">Le prix dépend du matériau (PVC, linoléum, moquette), de la préparation (ragréage) et des surfaces. Pour un <strong>sol souple prix</strong> précis, demandez un <a href="/contact" class="text-brand">devis pose de sol</a> gratuit : réponse sous 24h.</p>
+      </details>
+      <details>
+        <summary class="font-semibold">Faites‑vous la pose de lino et de moquette ?</summary>
+        <p class="text-white/80 mt-2">Oui. Nous réalisons la <strong>pose de lino (linoléum)</strong>, la <strong>pose de moquette</strong> en dalles ou en lés, ainsi que la <strong>pose de tapis</strong> pour des zones de passage. Nous intervenons en neuf, <strong>rénovation intérieure</strong> et rénovation maison.</p>
+      </details>
+      <details>
+        <summary class="font-semibold">Intervenez‑vous chez les particuliers et les pros ?</summary>
+        <p class="text-white/80 mt-2">Oui, particuliers, commerces et ERP. Artisan revêtement de sol local, nous travaillons parfois en binôme avec un <strong>entrepreneur général</strong> dans le cadre d’un <strong>service rénovation</strong> ou d’une <strong>construction maison</strong>.</p>
+      </details>
+      <details>
+        <summary class="font-semibold">Êtes‑vous un artisan près de chez moi ?</summary>
+        <p class="text-white/80 mt-2">Nous sommes situés à Ambarès (Bordeaux) et nous nous déplaçons en Gironde et Nouvelle‑Aquitaine. Contactez un <strong>artisan</strong> <em>près de chez moi</em> pour vérifier la disponibilité sur votre commune.</p>
+      </details>
+    </div>
+
+    <!-- FAQ JSON-LD -->
+    <script type="application/ld+json" is:inline>
+      {JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'Quel est le meilleur sol souple pour mon usage ?',
+            acceptedAnswer: { '@type': 'Answer', text: 'PVC pour pièces humides (cuisine, salle de bain), linoléum pour un matériau naturel et durable, moquette pour le confort acoustique. Le choix dépend aussi du trafic et de la préparation du support.' }
+          },
+          {
+            '@type': 'Question',
+            name: 'Combien coûte un sol souple ?',
+            acceptedAnswer: { '@type': 'Answer', text: 'Le prix varie selon le matériau (PVC, linoléum, moquette), la surface et la préparation. Demandez un devis pose de sol gratuit pour un chiffrage précis.' }
+          },
+          {
+            '@type': 'Question',
+            name: 'Faites‑vous la pose de lino et de moquette ?',
+            acceptedAnswer: { '@type': 'Answer', text: 'Oui, pose de lino/linoléum, pose de moquette en dalles ou lés, et pose de tapis pour les zones de passage.' }
+          },
+          {
+            '@type': 'Question',
+            name: 'Intervenez‑vous chez les particuliers et les pros ?',
+            acceptedAnswer: { '@type': 'Answer', text: 'Oui, particuliers, commerces et ERP. Nous intervenons aussi en coordination avec un entrepreneur général pour des projets de rénovation intérieure et de construction maison.' }
+          },
+          {
+            '@type': 'Question',
+            name: 'Êtes‑vous un artisan près de chez moi ?',
+            acceptedAnswer: { '@type': 'Answer', text: 'Basés à Ambarès (Bordeaux), nous intervenons en Gironde et en Nouvelle-Aquitaine. Vérifiez la disponibilité par contact.' }
+          }
+        ]
+      })}
+    </script>
+  </section>
+
+  <!-- CTA final -->
+  <section class="bg-dark text-white">
+    <div class="container py-12 md:py-16 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold">Un projet de sol ? On vous contacte sous 24h.</h2>
+      <div class="mt-5 flex items-center justify-center gap-3">
+        <a href="/contact" class="btn-primary">Demander un devis</a>
+        <a href="tel:+33663301461" class="btn-ghost">Appeler maintenant</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts d’animation (reveal + compteurs) -->
+  <script type="module" src="/src/scripts/animate.js"></script>
+
+
+  <!-- JSON-LD: on l’ajoutera juste avant déploiement (SEO) -->
+</BaseLayout>

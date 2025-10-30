@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* Définition du thème (Tailwind v4) */
+/* Thème */
+@theme {
+  --color-brand:  #805638;
+  --color-brand-600: #a86424;
+  --color-dark:   #101010;   /* fond */
+  --color-light:  #f4efe9;   /* crème (on s'en sert encore pour quelques blocs clairs) */
+  --font-sans: "Inter", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+  --color-brand-20: color-mix(in oklab, var(--color-brand) 20%, transparent);
+}
+
+/* Utils */
+@utility container { @apply max-w-6xl mx-auto px-4; }
+@utility btn { @apply inline-block rounded px-6 py-3 font-semibold; }
+@utility btn-primary { @apply btn bg-brand text-white hover:bg-brand-600; }
+@utility btn-ghost { @apply btn border border-white/30 text-white hover:border-white/60; }
+@utility section-title { @apply text-3xl md:text-4xl font-extrabold; }
+@utility section-sub { @apply mt-2 text-lg opacity-80; }
+
+/* === Utilitaires couleur brand (v4-friendly) === */
+.text-brand { color: var(--color-brand); }
+.bg-brand-20 { background-color: var(--color-brand-20); }
+
+/* Fond “boisé” doux (couleur + léger grain) */
+.bg-wood {
+  background: radial-gradient(1200px 600px at 10% 0%, #1a1a1a 0%, #141414 40%, #101010 100%);
+}
+
+/* ==== NAVBAR (transparent -> noire au scroll) ==== */
+.site-header { /* état initial : transparent sur le hero */
+  @apply fixed top-0 inset-x-0 z-50 transition-colors duration-300;
+  background-color: transparent;
+}
+
+.site-header.scrolled { /* état au scroll : fond noir + légère bordure */
+  @apply bg-black/85 border-b border-white/10 backdrop-blur;
+}
+
+.nav-link { @apply text-white/90 hover:text-white transition; }
+.brand-mark { @apply font-extrabold tracking-tight text-xl text-white; }
+
+/* Bouton Contact : style initial = ghost blanc ; au scroll -> primaire */
+.btn-contact-ghost { @apply inline-block rounded px-4 py-2 text-sm border border-white/40 text-white hover:border-white/70; }
+.btn-contact-solid { @apply inline-block rounded px-4 py-2 text-sm bg-brand text-white hover:bg-brand-600; }
+
+
+/* Overlay sombre réutilisable (hero, tuiles) */
+.overlay-dark { @apply absolute inset-0 bg-black/40; }
+
+/* Carrousel : bullets/dots */
+.carousel-dots { @apply absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2; }
+.carousel-dots button{ @apply w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white/80 transition; }
+.carousel-dots button[aria-current="true"]{ @apply bg-white; }
+
+/* Animations reveal */
+@keyframes fade-up   { from {opacity:0; transform:translateY(20px)} to {opacity:1; transform:none} }
+@keyframes fade-left { from {opacity:0; transform:translateX(20px)} to {opacity:1; transform:none} }
+@keyframes fade-right{ from {opacity:0; transform:translateX(-20px)} to {opacity:1; transform:none} }
+
+.reveal{ opacity:0; will-change: transform, opacity; }
+.reveal.in{ opacity:1; }
+.reveal[data-reveal="up"].in{ animation: fade-up .6s ease-out both; }
+.reveal[data-reveal="left"].in{ animation: fade-left .6s ease-out both; }
+.reveal[data-reveal="right"].in{ animation: fade-right .6s ease-out both; }
+
+/* Cartes “hover” */
+.card-dark { @apply bg-brand/50 opacity-70 shadow-sm hover:shadow-md transition; }
+.card { @apply p-6 rounded-xl border bg-white transition shadow-sm; }
+.card:hover { transform: translateY(-2px); box-shadow: 0 8px 18px 0 rgb(0 0 0 / .06); }
+
+/* Compteurs (gros chiffres) */
+.stat { @apply text-3xl md:text-4xl font-extrabold; }
+.stat-sub { @apply text-sm opacity-70; }
+
+/* Optionnel : styles globaux */
+html, body { @apply font-sans text-white bg-dark; }

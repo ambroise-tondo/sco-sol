@@ -1,0 +1,176 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/services.css";
+
+/* Images à placer dans /public/images/ :
+   - hero-services.jpg
+   - svc-pvc.jpg, svc-lino.jpg, svc-moquette.jpg, svc-sdb.jpg, svc-prepa.jpg, svc-renov.jpg
+   - step-1.jpg, step-2.jpg, step-3.jpg, step-4.jpg
+*/
+const title = "Services | Pose de lino, PVC, moquette – Rénovation de sol à Bordeaux";
+const description = "Poseur de sol: PVC, lino/linoléum, moquette, pose de tapis, salles de bain étanches. Préparation des supports et rénovation de sol à Bordeaux et en Nouvelle‑Aquitaine. Devis rapide.";
+---
+<BaseLayout {title} {description}>
+
+  <!-- HERO sombre -->
+  <section class="page-hero" data-parallax-root data-speed="0.25">
+    <img src="/images/hero-services.jpg" alt="Revêtements de sols – services SCO Sol"
+         class="parallax-media w-full h-full object-cover"
+         onerror="this.onerror=null;this.src='/images/placeholder.jpg';" />
+    <div class="page-hero__content">
+      <div>
+        <p class="uppercase tracking-widest text-white/70 text-xs">Nos prestations</p>
+        <h1 class="text-3xl md:text-5xl font-extrabold">Services</h1>
+        <p class="mt-2 text-white/80 max-w-2xl mx-auto">
+          Sols souples PVC, linoléum, moquette – pièces humides & préparation de supports.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- WORKFLOW / PROCESS (4 étapes alternées) -->
+  <section class="border-y border-white/10">
+    <div class="container">
+        <div class="content-narrow py-12 md:py-16 grid gap-14">
+        <!-- Etape 1 -->
+        <div class="step reveal" data-reveal="up">
+            <div class="step__img order-1 md:order-1">
+            <img src="/images/step-1.jpg" alt="Brief & estimation"
+                class="w-full h-[280px] md:h-[360px] object-cover"
+                onerror="this.onerror=null;this.src='/images/placeholder.jpg';" />
+            </div>
+            <div class="step__txt order-2 md:order-2">
+            <div class="step__no">01</div>
+            <h3 class="step__title">Brief & devis rapide</h3>
+            <p class="step__desc">
+                Vous décrivez votre projet (photos bienvenues). Nous revenons vers vous sous 24h avec une estimation et un créneau possible.
+            </p>
+            </div>
+        </div>
+
+        <!-- Etape 2 -->
+        <div class="step reveal" data-reveal="up">
+            <div class="step__txt order-2 md:order-1">
+            <div class="step__no">02</div>
+            <h3 class="step__title">Préparation des supports</h3>
+            <p class="step__desc">
+                Diagnostic, primaire d’accrochage, ragréage et contrôle de planéité pour garantir une pose durable et des finitions propres.
+            </p>
+            </div>
+            <div class="step__img order-1 md:order-2">
+            <img src="/images/step-2.jpg" alt="Préparation des supports"
+                class="w-full h-[280px] md:h-[360px] object-cover"
+                onerror="this.onerror=null;this.src='/images/placeholder.jpg';" />
+            </div>
+        </div>
+
+        <!-- Etape 3 -->
+        <div class="step reveal" data-reveal="up">
+            <div class="step__img order-1 md:order-1">
+            <img src="/images/step-3.jpg" alt="Pose & soudures"
+                class="w-full h-[280px] md:h-[360px] object-cover"
+                onerror="this.onerror=null;this.src='/images/placeholder.jpg';" />
+            </div>
+            <div class="step__txt order-2 md:order-2">
+            <div class="step__no">03</div>
+            <h3 class="step__title">Pose & finitions</h3>
+            <p class="step__desc">
+                Pose en dalles ou en lés (PVC, lino, moquette), découpes propres, soudures à chaud/froid, remontées en plinthes pour zones humides.
+            </p>
+            </div>
+        </div>
+
+        <!-- Etape 4 -->
+        <div class="step reveal" data-reveal="up">
+            <div class="step__txt order-2 md:order-1">
+            <div class="step__no">04</div>
+            <h3 class="step__title">Contrôle & remise en état</h3>
+            <p class="step__desc">
+                Nettoyage de fin de chantier, contrôle qualité avec vous, conseils d’entretien. Garantie décennale selon les travaux.
+            </p>
+            </div>
+            <div class="step__img order-1 md:order-2">
+            <img src="/images/step-4.jpg" alt="Contrôle & remise"
+                class="w-full h-[280px] md:h-[360px] object-cover"
+                onerror="this.onerror=null;this.src='/images/placeholder.jpg';" />
+            </div>
+        </div>
+
+        </div>
+    </div>
+  </section>
+
+  <!-- CTA contact -->
+  <section class="container py-12 md:py-16">
+    <div class="cta">
+      <img src="/images/hero-services.jpg" alt="" class="w-full h-[260px] md:h-[320px] object-cover"
+           onerror="this.onerror=null;this.src='/images/placeholder.jpg';" />
+      <div class="cta__content">
+        <h3 class="text-2xl md:text-3xl font-extrabold">Discutons de votre projet</h3>
+        <p class="text-white/80 max-w-2xl">Expliquez-nous votre besoin : type de pièce, surface, préférence de matériau, photos si possible.</p>
+        <div>
+          <a href="/contact" class="btn-primary">Demander un devis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bloc éditorial SEO -->
+  <section class="container py-10">
+    <div class="content-narrow prose prose-invert max-w-none">
+      <h2 id="pvc" class="text-2xl md:text-3xl font-extrabold">Pose de PVC</h2>
+      <p>Revêtement <strong>sol souple</strong> par excellence, le <strong>PVC</strong> convient aux pièces de vie et zones humides. Pose en dalles ou en lés, finitions soignées, soudures à chaud, relevés en plinthes pour <strong>salle de bain</strong>.</p>
+
+      <h2 id="lino" class="text-2xl md:text-3xl font-extrabold mt-8">Pose de lino (linoléum)</h2>
+      <p>Le <strong>linoléum</strong> – souvent appelé <strong>lino</strong> – est un matériau naturel, robuste et chaleureux. Nous assurons la <strong>pose de Lino</strong> avec préparation du support et découpes précises autour des seuils et huisseries.</p>
+
+      <h2 id="moquette" class="text-2xl md:text-3xl font-extrabold mt-8">Pose de moquette et tapis</h2>
+      <p>Confort acoustique et thermique en <strong>moquette</strong> (dalles ou lés). Nous pouvons également <strong>poser des tapis</strong> techniques (zones de passage). Demandez un <a href="/contact" class="text-brand">devis pose de sol</a> avec recommandations de textures.</p>
+
+      <h2 id="renov" class="text-2xl md:text-3xl font-extrabold mt-8">Rénovation de sol</h2>
+      <p><strong>Rénovation intérieur</strong> et reprise locale ou complète : dépose, ragréage, remise à niveau. <strong>Artisan revêtement de sol</strong> intervenant pour appartement, maison, commerce et ERP.</p>
+
+      <h3 class="text-xl font-bold mt-8">Quel est le meilleur sol souple ? Et à quel prix ?</h3>
+      <p>Le « <strong>meilleur sol souple</strong> » dépend de l’usage. Côté budget, le <strong>sol souple prix</strong> varie selon la gamme (PVC, linoléum, moquette) et la préparation. Contactez un <strong>artisan près de chez moi</strong> à Bordeaux pour un chiffrage clair sous 24h.</p>
+    </div>
+
+    <!-- Services JSON-LD -->
+    <script type="application/ld+json" is:inline>
+      {JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        itemListElement: [
+          { '@type': 'Service', name: 'Pose de PVC', serviceType: 'PVC flooring installation', areaServed: ['Bordeaux','Nouvelle-Aquitaine'] },
+          { '@type': 'Service', name: 'Pose de lino (linoléum)', serviceType: 'Linoleum installation', areaServed: ['Bordeaux','Nouvelle-Aquitaine'] },
+          { '@type': 'Service', name: 'Pose de moquette', serviceType: 'Carpet installation', areaServed: ['Bordeaux','Nouvelle-Aquitaine'] },
+          { '@type': 'Service', name: 'Pose de tapis', serviceType: 'Rug installation', areaServed: ['Bordeaux','Nouvelle-Aquitaine'] },
+          { '@type': 'Service', name: 'Rénovation de sol', serviceType: 'Floor renovation', areaServed: ['Bordeaux','Nouvelle-Aquitaine'] }
+        ]
+      })}
+    </script>
+  </section>
+
+  <!-- Animations scroll (déjà globales) -->
+  <script type="module" src="/src/scripts/animate.js"></script>
+  <script is:inline>
+    // Parallax léger (même logique que sur À propos)
+    const roots = document.querySelectorAll('[data-parallax-root]');
+    const onScroll = () => {
+      const y = window.scrollY || 0;
+      roots.forEach(root => {
+        const speed = Number(root.dataset.speed) || 0.2;
+        const media = root.querySelector('.parallax-media');
+        if (!media) return;
+        const offset = Math.round(y * speed);
+        media.style.transform = `translate3d(0, ${offset}px, 0) scale(1.08)`;
+      });
+    };
+    let rid; const tick = () => { rid = null; onScroll(); };
+    const schedule = () => { if (!rid) rid = requestAnimationFrame(tick); };
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    document.addEventListener('DOMContentLoaded', schedule);
+    schedule();
+  </script>
+</BaseLayout>

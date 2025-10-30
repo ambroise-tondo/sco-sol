@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Mentions légales | SCO Sol";
+const description = "Informations légales du site SCO Sol – artisan poseur de sols à Bordeaux.";
+---
+<BaseLayout {title} {description}>
+  <div class="max-w-3xl mx-auto px-4 py-10 space-y-3 text-sm leading-relaxed">
+    <h1 class="text-2xl font-bold mb-4">Mentions légales</h1>
+
+    <p><strong>Éditeur du site :</strong> SCO Sol</p>
+    <p><strong>Adresse :</strong> 17ter avenue du chemin de la vie, 33440 Ambarès</p>
+    <p><strong>Téléphone :</strong> <a href="tel:+33663301461" class="text-brand">06 63 30 14 61</a></p>
+    <p><strong>E-mail :</strong> <a href="mailto:sco.d@hotmail.com" class="text-brand">sco.d@hotmail.com</a></p>
+    <p><strong>Numéro SIRET :</strong> 92071038100012</p>
+    <p><strong>Code APE :</strong> 4333Z</p>
+    <p><strong>Responsable de la publication :</strong> M. [Nom à compléter]</p>
+
+    <h2 class="text-xl font-semibold mt-6 mb-2">Hébergement</h2>
+    <p>
+      Le site est hébergé par :
+      <br /> <strong>Vercel Inc.</strong>
+      <br /> 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis
+      <br /> <a href="https://vercel.com" target="_blank" class="text-brand">https://vercel.com</a>
+    </p>
+
+    <h2 class="text-xl font-semibold mt-6 mb-2">Propriété intellectuelle</h2>
+    <p>
+      L’ensemble du contenu du site (textes, images, logo, code) est la propriété exclusive de SCO Sol.
+      Toute reproduction totale ou partielle est interdite sans autorisation préalable.
+    </p>
+
+    <h2 class="text-xl font-semibold mt-6 mb-2">Responsabilité</h2>
+    <p>
+      SCO Sol s’efforce d’assurer l’exactitude des informations présentes sur ce site, mais ne saurait être tenue
+      responsable d’erreurs ou d’omissions. Les liens externes n’engagent pas la responsabilité de l’éditeur.
+    </p>
+  </div>
+</BaseLayout>

@@ -1,0 +1,118 @@
+---
+import "../styles/global.css";
+const { title = "SCO Sol", description = "Pose de sols souples à Bordeaux et en Nouvelle-Aquitaine" } = Astro.props;
+const canonical = `${Astro.site?.origin ?? 'https://exemple.fr'}${Astro.url.pathname}`;
+---
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+
+    <!-- Police Inter (optionnel) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SCO Sol" />
+    <meta property="og:locale" content="fr_FR" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="canonical" href={canonical} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://exemple.fr/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" is:inline>
+      {JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FlooringContractor',
+        name: 'SCO Sol',
+        url: Astro.site?.origin || 'https://exemple.fr',
+        telephone: '+33663301461',
+        email: 'sco.d@hotmail.com',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '17ter avenue du chemin de la vie',
+          postalCode: '33440',
+          addressLocality: 'Ambarès-et-Lagrave',
+          addressRegion: 'Nouvelle-Aquitaine',
+          addressCountry: 'FR'
+        },
+        areaServed: ['Bordeaux', 'Nouvelle-Aquitaine', 'Gironde'],
+        description,
+        sameAs: []
+      })}
+    </script>
+
+  </head>
+  <body>
+    <header class="site-header scrolled" data-header>
+        <div class="container py-3 flex items-center justify-between">
+            <a href="/" class="brand-mark">
+            SCO <span class="text-brand">Sol</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-6 text-sm">
+            <a class="nav-link" href="/services">Services</a>
+            <a class="nav-link" href="/realisations">Réalisations</a>
+            <a class="nav-link" href="/a-propos">À propos</a>
+            <a href="/contact" data-contact class="btn-contact-ghost">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <main class="pt-16 min-h-[60vh]">
+        <slot />
+    </main>
+
+
+    <footer class="bg-dark text-white">
+      <div class="max-w-6xl mx-auto p-6 text-sm flex flex-col md:flex-row gap-2 md:gap-6 items-center justify-between">
+        <p>© {new Date().getFullYear()} SCO Sol – Bordeaux & Nouvelle-Aquitaine</p>
+        <p>
+          <a class="hover:text-brand" href="tel:+33663301461">06 63 30 14 61</a> ·
+          <a class="hover:text-brand" href="mailto:sco.d@hotmail.com">sco.d@hotmail.com</a>
+        </p>
+        <p class="opacity-80">
+          <a class="hover:text-brand" href="/mentions-legales">Mentions légales</a> ·
+          <a class="hover:text-brand" href="/politique-confidentialite">Confidentialité</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Navbar scroll behavior -->
+    <script is:inline>
+        const header = document.querySelector('[data-header]');
+        const contactBtn = header?.querySelector('[data-contact]');
+
+        function apply() {
+            const scrolled = window.scrollY > 10;
+            header.classList.toggle('scrolled', scrolled);
+
+            // Bascule du style du bouton Contact
+            if (contactBtn) {
+            contactBtn.classList.toggle('btn-contact-ghost', !scrolled);
+            contactBtn.classList.toggle('btn-contact-solid', scrolled);
+            }
+        }
+
+        // au chargement + au scroll + au resize
+        window.addEventListener('scroll', apply, { passive: true });
+        window.addEventListener('resize', apply);
+        document.addEventListener('DOMContentLoaded', apply);
+        apply();
+    </script>
+
+
+  </body>
+</html>

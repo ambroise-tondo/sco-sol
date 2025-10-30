@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/* ====== SERVICES PAGE STYLES (scopés) ====== */
+
+/* Hero sombre avec overlay */
+.page-hero {
+  @apply relative overflow-hidden rounded-b-2xl;
+  min-height: 56vh; /* aligné sur À propos */
+}
+.page-hero::after {
+  content: "";
+  @apply absolute inset-0 bg-black/50;
+}
+
+/* Titre sur hero */
+.page-hero__content {
+  @apply absolute inset-0 grid place-items-center text-center text-white p-6;
+}
+
+/* Parallax media dans le hero */
+.parallax-media{
+  @apply absolute inset-0;
+  will-change: transform;
+  transform: translate3d(0,0,0) scale(1.08);
+}
+
+/* Cartes service (sombres, carrées) */
+.service-card {
+  @apply bg-white/5 shadow-sm hover:shadow-md transition h-full flex flex-col;
+}
+.service-card img {
+  @apply w-full h-56 object-cover;
+}
+.service-card__body {
+  @apply p-6 flex-1 flex flex-col;
+}
+.service-card__title {
+  @apply text-base font-semibold text-white;
+}
+.service-card__text {
+  @apply mt-2 text-sm text-white/70 flex-1;
+}
+
+/* Etapes (layout alterné) */
+.step {
+  @apply grid md:grid-cols-2 gap-8 items-center;
+}
+.step__img {
+  @apply relative rounded-xl overflow-hidden;
+}
+.step__img::after { /* overlay subtil */
+  content:""; @apply absolute inset-0 bg-black/20;
+}
+.step__txt {
+  @apply relative p-2;
+}
+.step__no {
+  /* pas de @apply ici : on met la couleur directement */
+  color: var(--color-brand);
+  @apply opacity-80 text-4xl font-extrabold tracking-wider;
+}
+.step__title {
+  @apply mt-1 text-xl font-semibold text-white;
+}
+.step__desc {
+  @apply mt-2 text-sm text-white/70;
+}
+
+/* CTA bloc */
+.cta {
+  @apply relative overflow-hidden rounded-2xl;
+}
+.cta::after {
+  content:""; @apply absolute inset-0 bg-black/50;
+}
+.cta__content {
+  @apply relative p-8 md:p-12 text-white text-center grid gap-4 place-items-center;
+}
+
+/* largeur de contenu étroite, centrée */
+.content-narrow {
+  /* 92% mobile, 75% dès md, 60% sur grand écran */
+  @apply w-11/12 md:w-3/4 lg:w-3/5 mx-auto;
+}

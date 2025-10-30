@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/* ===== ABOUT PAGE (scopé) ===== */
+
+/* largeur de contenu étroite, centrée (reutilisable) */
+.content-narrow { @apply w-11/12 md:w-3/4 lg:w-3/5 mx-auto; }
+
+/* HERO PARALLAX */
+.parallax-hero {
+  @apply relative overflow-hidden rounded-b-2xl;
+  min-height: 56vh;
+  isolation: isolate;
+}
+.parallax-media {
+  @apply absolute inset-0;
+  will-change: transform;
+  transform: translate3d(0,0,0) scale(1.05);
+}
+.parallax-overlay { @apply absolute inset-0 bg-black/50; }
+.parallax-inner {
+  @apply absolute inset-0 grid place-items-center text-center text-white p-6;
+}
+
+/* Split (image / texte) */
+.split { @apply grid md:grid-cols-2 gap-8 items-center; }
+.split-img { @apply relative rounded-xl overflow-hidden; }
+.split-img::after { content:""; @apply absolute inset-0 bg-black/20; }
+.split-txt { @apply relative; }
+
+/* Valeurs (icônes + titre + texte) */
+.value-card { @apply bg-white/5 p-6 rounded-xl border border-white/5; }
+.value-icon {
+  @apply w-12 h-12 rounded-full grid place-items-center text-white mb-3;
+  background-color: rgba(255,255,255,0.08);
+}
+
+/* Engagements (badges) */
+.badge {
+  @apply inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-white/90 text-sm;
+}
+
+/* Partenaires */
+.brand-tile {
+  @apply grid place-items-center; /* pas de cadre, pas de fond */
+}
+.brand-tile img { @apply max-h-10 opacity-90; }
+
+/* CTA */
+.cta {
+  @apply relative overflow-hidden rounded-2xl;
+}
+.cta::after { content:""; @apply absolute inset-0 bg-black/50; }
+.cta-media { @apply absolute inset-0 object-cover w-full h-full; }
+.cta-content { @apply relative p-8 md:p-12 text-white text-center grid gap-4 place-items-center; }

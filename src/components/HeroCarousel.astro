@@ -1,0 +1,122 @@
+---
+/**
+ * HeroCarousel.astro — version robuste
+ * - Plein écran (70–80vh)
+ * - Overlay + CTA
+ * - Auto-play 5s (pause au survol)
+ * - Dots + flèches accessibles
+ * - Init après DOMContentLoaded (évite track null)
+ * - Respecte prefers-reduced-motion
+ */
+const slides = [
+  {
+    img: "/images/hero-1.jpg",
+    title: "Sols souples PVC, Linoléum, Moquette",
+    sub: "Pose soignée, pièces humides, soudures à chaud/froid.",
+    cta: { href: "/contact", label: "Demander un devis" }
+  },
+  {
+    img: "/images/hero-2.jpg",
+    title: "Bordeaux & Nouvelle-Aquitaine",
+    sub: "Intervention rapide • Devis sous 24h",
+    cta: { href: "tel:+33663301461", label: "Appeler le 06 63 30 14 61" }
+  },
+  {
+    img: "/images/hero-3.jpg",
+    title: "Préparation des supports",
+    sub: "Ragréage, planéité, finitions durables.",
+    cta: { href: "/services", label: "Voir les services" }
+  }
+];
+---
+<section class="relative h-[70vh] md:h-[80vh] overflow-hidden rounded-b-2xl"
+         data-carousel-root
+         data-slide-count={slides.length}>
+  <!-- Piste -->
+  <div class="absolute inset-0 flex transition-transform duration-500 will-change-transform"
+       data-carousel-track>
+    {slides.map((s)=>(
+      <figure class="relative min-w-full h-full">
+        <img src={s.img} alt={s.title} class="w-full h-full object-cover"
+             onerror="this.onerror=null;this.src='/images/placeholder.jpg';" />
+        <div class="overlay-dark"></div>
+        <figcaption class="absolute inset-0 grid place-items-center p-6 md:p-12">
+          <div class="max-w-2xl text-center text-white">
+            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight drop-shadow">{s.title}</h1>
+            <p class="mt-3 text-lg opacity-90">{s.sub}</p>
+            <a href={s.cta.href} class="btn-primary mt-6 inline-block">{s.cta.label}</a>
+          </div>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+
+  <!-- Flèches -->
+  <button class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2"
+          aria-label="Slide précédent" data-carousel-prev>‹</button>
+  <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2"
+          aria-label="Slide suivant" data-carousel-next>›</button>
+
+  <!-- Dots -->
+  <div class="carousel-dots" data-carousel-dots aria-label="Navigation carrousel"></div>
+
+  <!-- JS inline robuste -->
+  <script type="module" is:inline>
+    // Lance seulement quand le DOM de ce composant est prêt
+    window.addEventListener('DOMContentLoaded', () => {
+      const root  = document.querySelector('[data-carousel-root]');
+      const track = root?.querySelector('[data-carousel-track]');
+      const prev  = root?.querySelector('[data-carousel-prev]');
+      const next  = root?.querySelector('[data-carousel-next]');
+      const dotsC = root?.querySelector('[data-carousel-dots]');
+
+      if (!root || !track || !prev || !next || !dotsC) return;
+
+      const slideCount = Number(root.getAttribute('data-slide-count')) || 0;
+      let index = 0, timer;
+
+      // Crée les bullets
+      for (let i = 0; i < slideCount; i++) {
+        const b = document.createElement('button');
+        b.setAttribute('aria-label', 'Aller au slide ' + (i+1));
+        b.addEventListener('click', () => go(i, true));
+        dotsC.appendChild(b);
+      }
+
+      const dots = [...dotsC.children];
+
+      function render() {
+        track.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
+      }
+      function go(i, user = false) {
+        index = (i + slideCount) % slideCount;
+        render();
+        if (user) restart();
+      }
+      function nextSlide() { go(index + 1); }
+      function prevSlide() { go(index - 1, true); }
+
+      function restart() {
+        clearInterval(timer);
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduce) timer = setInterval(nextSlide, 5000);
+      }
+
+      // Init
+      render();
+      restart();
+
+      // Events
+      next.addEventListener('click', () => go(index + 1, true));
+      prev.addEventListener('click', () => prevSlide());
+      // Pause au survol (sur toute la zone)
+      root.addEventListener('mouseenter', () => clearInterval(timer));
+      root.addEventListener('mouseleave', restart);
+
+      // Résilience : recalcul si resize/rotation
+      let rid;
+      window.addEventListener('resize', () => { cancelAnimationFrame(rid); rid = requestAnimationFrame(render); });
+    });
+  </script>
+</section>

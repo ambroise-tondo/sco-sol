@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* ====== REALISATIONS (scopé) ====== */
+
+/* Hero sombre avec overlay (aligné sur À propos) */
+.page-hero { @apply relative overflow-hidden rounded-b-2xl; min-height: 56vh; }
+.page-hero::after { content: ""; @apply absolute inset-0 bg-black/50; }
+.page-hero__content { @apply absolute inset-0 grid place-items-center text-center text-white p-6; }
+
+/* Parallax media */
+.parallax-media{ @apply absolute inset-0; will-change: transform; transform: translate3d(0,0,0) scale(1.08); }
+
+/* Grille de cartes (ancien layout) */
+.works-grid { @apply grid gap-20 md:grid-cols-3; }
+
+/* Carte réalisation (image au-dessus, bloc blanc en bas) */
+.work-card {
+  @apply relative overflow-hidden shadow-sm;
+  /* Le conteneur porte l'effet de lumière */
+  isolation: isolate;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.work-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px 0 rgb(0 0 0 / .15); }
+
+/* Effet "glowing light" en diagonale au hover */
+.work-card::after{
+  content: "";
+  position: absolute; inset: -60% -20% auto;
+  height: 120%; width: 60%;
+  background: linear-gradient(120deg,
+    rgba(255,255,255,0) 45%,
+    rgba(255,255,255,.35) 50%,
+    rgba(255,255,255,0) 55%);
+  transform: translateX(-140%) rotate(18deg);
+  filter: blur(8px);
+  pointer-events: none;
+  transition: transform .9s cubic-bezier(.2,.6,.2,1);
+  z-index: 1;
+}
+.work-card:hover::after{ transform: translateX(180%) rotate(18deg); }
+
+/* Media */
+.work-card__media { @apply relative; }
+.work-card__media img { @apply block w-full h-72 md:h-80 object-cover; }
+
+/* Corps blanc (texte sombre) */
+.work-card__body{ @apply bg-white p-5; }
+.work-card__title{ @apply text-lg font-semibold; color: #111; }
+.work-card__text{ @apply mt-1 text-sm; color: rgba(0,0,0,.65); }
+
+/* Accent couleur brand pour petits éléments réutilisables */
+.work-accent { color: var(--color-brand); }
+
+/* ===== Nouveau strip horizontal (une seule ligne) ===== */
+.works-strip {
+  @apply relative flex gap-6 overflow-x-auto pb-2;
+  scroll-snap-type: x proximity;
+}
+.works-strip > * { scroll-snap-align: start; }
+
+/* Panneau vertical plein visuel */
+.work-panel {
+  @apply relative rounded-lg overflow-hidden shadow-sm bg-black/20;
+  isolation: isolate;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.work-panel:hover { transform: translateY(-2px); box-shadow: 0 12px 28px 0 rgb(0 0 0 / .15); }
+
+/* Image plein cadre */
+.panel-media { @apply absolute inset-0 w-full h-full object-cover; }
+
+/* Overlay assombrissant uniforme (réduit au hover) */
+.work-panel::before{
+  content:""; position:absolute; inset:0; z-index:1;
+  background: rgba(0,0,0,.45);
+  transition: background .35s ease;
+}
+.work-panel:hover::before{ background: rgba(0,0,0,.12); }
+
+/* Shine diagonal subtil (conserve l'effet demandé) */
+.work-panel::after{
+  content: ""; position: absolute; z-index:2; pointer-events:none;
+  inset: -60% -20% auto; height: 120%; width: 60%;
+  background: linear-gradient(120deg, rgba(255,255,255,0) 45%, rgba(255,255,255,.28) 50%, rgba(255,255,255,0) 55%);
+  transform: translateX(-150%) rotate(18deg);
+  filter: blur(8px); transition: transform .9s cubic-bezier(.2,.6,.2,1);
+}
+.work-panel:hover::after{ transform: translateX(190%) rotate(18deg); }
+
+/* Titre en haut à gauche */
+.panel-title{
+  @apply absolute top-5 left-5 z-10 text-white font-semibold uppercase tracking-wide text-sm max-w-[78%];
+}
+
+/* Texte vertical côté gauche (tag / catégorie) */
+.panel-tag{
+  @apply absolute left-4 bottom-6 z-10 text-white/80 tracking-[0.3em] text-xs;
+  transform: rotate(-90deg) translateY(0);
+  transform-origin: left bottom;
+}

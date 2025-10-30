@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+/* ===== CONTACT ===== */
+
+.contact-hero{ @apply relative overflow-hidden; }
+.contact-hero::before{ content:""; @apply absolute inset-0 bg-black; opacity:.88; }
+.contact-hero > .container{ @apply relative; }
+
+.contact-heading{ @apply relative py-6 md:py-8; }
+.contact-heading h1{
+  @apply text-8xl md:text-8xl font-extrabold tracking-tight;
+}
+.contact-watermark{
+  position:absolute; inset:auto 0 0 0; text-align:right; pointer-events:none;
+  font-weight:800; line-height:1; opacity:.08; color:var(--color-light);
+  font-size: clamp(48px, 8vw, 160px);
+  transform: translateY(10%);
+}
+
+.contact-wrap{ @apply grid md:grid-cols-2 gap-10 md:gap-12 items-start; }
+
+.contact-form{ @apply grid gap-4; }
+.form-label{ @apply text-white/90 text-sm; }
+
+.chip-group{ @apply flex flex-wrap gap-2 mb-2; }
+.chip{ @apply inline-flex; }
+.chip input{ position:absolute; opacity:0; pointer-events:none; }
+.chip span{
+  @apply px-3 py-2 text-sm rounded border border-white/20 text-white/90;
+  background-color: rgba(255,255,255,0.04);
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+.chip input:checked + span{
+  color:#fff; border-color: color-mix(in oklab, var(--color-brand) 60%, white 0%);
+  background-color: color-mix(in oklab, var(--color-brand) 18%, transparent);
+}
+
+.field-row{ @apply grid md:grid-cols-2 gap-3; }
+.field{
+  @apply w-full px-4 py-3 rounded outline-none text-white placeholder:text-white/40;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.18);
+}
+.field:focus{ border-color: var(--color-brand); box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-brand) 35%, transparent); }
+.field-area{ @apply h-36 md:h-40 resize-y; }
+
+.send-btn{
+  @apply inline-block px-5 py-3 rounded font-semibold text-white; 
+  background-color: var(--color-brand);
+}
+.send-btn:hover{ background-color: var(--color-brand-600); }
+
+.contact-alt{ @apply mt-2 text-sm text-white/70; }
+.contact-alt a{ color:#fff; }
+.contact-alt a:hover{ color: var(--color-brand); }
+
+.contact-aside{ @apply text-white/80; }
+.aside-text{ @apply leading-relaxed; }
+.socials{ @apply flex items-center gap-4 mt-6 text-white/70; }
+.socials a{ @apply hover:text-white; }
