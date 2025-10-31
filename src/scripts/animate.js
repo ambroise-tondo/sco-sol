@@ -1,4 +1,4 @@
-// src/scripts/animate.js
+// src//scripts/animate.js
 
 // Observer: révèle les éléments + anime les compteurs quand ils entrent dans le viewport
 const io = new IntersectionObserver((entries) => {
