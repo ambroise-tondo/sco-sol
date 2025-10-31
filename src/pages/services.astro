@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/services.css";
-import animate from "../scripts/animate.js";
+const animateUrl = Astro.resolve('../scripts/animate.js');
 
 /* Images à placer dans /public/images/ :
    - hero-services.jpg
@@ -153,7 +153,7 @@ const description = "Poseur de sol: PVC, lino/linoléum, moquette, pose de tapis
   </section>
 
   <!-- Animations scroll (reveal + compteurs) -->
-  <script type="module" src={animate}></script>
+  <script type="module" src={animateUrl}></script>
   <script is:inline>
     // Parallax léger (même logique que sur À propos)
     const roots = document.querySelectorAll('[data-parallax-root]');
