@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroCarousel from "../components/HeroCarousel.astro";
 import "../styles/home.css";
+import animate from "../scripts/animate.js";
 const title = "SCO Sol | Poseur de sol à Bordeaux (PVC, linoléum, moquette)";
 const description = "Artisan spécialiste en revêtement souple: PVC, lino/linoléum, moquette, salles de bain. Rénovation de sol et préparation des supports. Devis pose de sol sous 24h à Bordeaux et en Nouvelle‑Aquitaine.";
 ---
@@ -265,7 +266,7 @@ const description = "Artisan spécialiste en revêtement souple: PVC, lino/linol
   </section>
 
   <!-- Scripts d’animation (reveal + compteurs) -->
-  <script type="module" src="/scripts/animate.js"></script>
+  <script type="module" src={animate}></script>
 
 
   <!-- JSON-LD: on l’ajoutera juste avant déploiement (SEO) -->

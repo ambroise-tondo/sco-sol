@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/realisations.css";
+import animate from "../scripts/animate.js";
 ---
 <BaseLayout title="Réalisations | PVC, lino, moquette – exemples à Bordeaux" description="Exemples de chantiers: pose de PVC, linoléum, moquette, salles de bain et rénovations en Nouvelle‑Aquitaine.">
 
@@ -43,7 +44,7 @@ import "../styles/realisations.css";
   </section>
 
   <!-- Animations scroll (réutilisées) -->
-  <script type="module" src="/scripts/animate.js"></script>
+  <script type="module" src={animate}></script>
   <script is:inline>
     const roots = document.querySelectorAll('[data-parallax-root]');
     const onScroll = () => {
