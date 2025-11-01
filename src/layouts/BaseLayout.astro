@@ -57,8 +57,11 @@ const canonical = `${Astro.site?.origin ?? 'https://exemple.fr'}${Astro.url.path
   <body>
     <header class="site-header scrolled" data-header>
         <div class="container py-3 flex items-center justify-between">
-            <a href="/" class="brand-mark">
-            SCO <span class="text-brand">Sol</span>
+            <a href="/" class="brand-mark flex items-center gap-2">
+              <img src="/images/scosol-logo.png" alt="Logo SCO Sol" class="h-7 w-auto" />
+              <span>
+                SCO <span class="text-brand">Sol</span>
+              </span>
             </a>
 
             <nav class="hidden md:flex items-center gap-6 text-sm">
